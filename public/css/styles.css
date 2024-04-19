@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 85vh;
     width: auto;
 }
 
@@ -40,6 +40,7 @@ footer {
     font-family: "Roboto Condensed";
     color: #444444;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -55,6 +56,7 @@ footer {
     text-align: center;
     font-family: "Roboto Condensed", 'Times New Roman', Times, serif;
     font-weight: 300;
+    font-size: 1.4rem;
 }
 
 .fade-in {
@@ -77,12 +79,52 @@ footer {
 }
 
 #getJoke {
-    font-size: 1.2em; /* Increase font size */
+    font-size: 0.9rem; /* Increase font size */
     padding: 10px 20px; /* Add padding to increase button size */
     border-radius: 8px; /* Add border radius for rounded corners */
     transition: transform 0.2s ease;
+    opacity: 0.7;
 }
 
 #getJoke:hover {
-    transform: scale(1.03);
+    opacity: 1;
 }
+
+.btn {
+    display: grid;
+    place-items: center;
+    background: white;
+    padding: 1.4em;
+    border-radius: 10px;
+    box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
+            -6px -6px 10px -1px rgba(255,255,255,0.7);
+    border: 1px solid rgba(0,0,0,0);
+    cursor: pointer;
+    transition: transform 0.5s;
+    margin-top: 10px;
+    opacity: 0.1;
+  }
+  
+  .btn:hover {
+    box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+            inset -4px -4px 6px -1px rgba(255,255,255,0.7),
+            -0.5px -0.5px 0px rgba(255,255,255,1),
+            0.5px 0.5px 0px rgba(0,0,0,0.15),
+            0px 12px 10px -10px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.1);
+    opacity: 1;
+  }
+  
+  .btn svg {
+    transition: transform 0.5s;
+  }
+  
+  .btn:hover svg {
+    transform: scale(0.9);
+    fill: #333333;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
