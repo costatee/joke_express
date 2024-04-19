@@ -1,0 +1,22 @@
+{
+  "name": "joke_api",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Welcome to the Minimalistic Jokes Web Application repository! This project is a single-page web application designed to display jokes in a clean and minimalistic interface. It utilizes Node.js, Express.js, and EJS for both front-end and back-end development.",
+  "main": "app.js",
+  "scripts": {
+    "start": "npx nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

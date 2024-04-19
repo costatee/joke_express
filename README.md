@@ -46,7 +46,3 @@ This project is licensed under the [MIT License](LICENSE).
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
 - [EJS](https://ejs.co/)
-
-## Contact
-
-For any inquiries or feedback, please contact [Attila Szepe](josephszepe@icloud.com).
