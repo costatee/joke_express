@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Fetch a new joke from the server
             const response = await fetch("/joke");
             const data = await response.json();
-            console.log(data);
 
             jokeSingle.innerText = data.joke;
             jokeSetup.innerText = data.setup;
