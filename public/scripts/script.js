@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Function to fade in a div
+    let isDarkMode = false;
     function fadeInDiv(div) {
         // Set initial opacity to 0 using CSS
         div.style.opacity = 0;
         
         // Calculate the number of frames and duration for the animation
-        const frames = 60; // Assuming 60 FPS
-        const duration = 1000; // 1 second
+        const frames = 60; 
+        const duration = 1000; 
         
         // Calculate the change in opacity per frame
         const deltaOpacity = 1 / frames;
@@ -19,11 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Check if animation is complete
             if (currentOpacity < 1) {
-                requestAnimationFrame(animate); // Continue animation
+                requestAnimationFrame(animate);
             }
         };
         
-        // Start the animation
         animate();
     }
     
@@ -47,8 +46,18 @@ document.addEventListener('DOMContentLoaded', function() {
             await new Promise(resolve => setTimeout(resolve, 750));
 
             // Fetch a new joke from the server
-            const response = await fetch("/joke");
+            const endpoint = this.id === 'getJoke' ? '/joke' : '/dirtyjoke';
+            const response = await fetch(endpoint);
             const data = await response.json();
+
+            if (this.id === 'getDirtyJoke' && !isDarkMode) {
+                document.body.classList.add('dark-mode');
+                isDarkMode = true;
+            }
+            else if (this.id === 'getJoke' && isDarkMode) {
+                document.body.classList.remove('dark-mode');
+                isDarkMode = false;
+            }
 
             jokeSingle.innerText = data.joke;
             jokeSetup.innerText = data.setup;
@@ -62,4 +71,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.getElementById('getJoke').addEventListener('click', handleClick);
+    document.getElementById('getDirtyJoke').addEventListener('click', handleClick);
 });

@@ -3,13 +3,33 @@ import axios from "axios";
 
 const app = express();
 const port = 8080;
-const apiURL = "https://v2.jokeapi.dev/joke/Any?safe-mode";
+const apiURL = "https://v2.jokeapi.dev/joke";
 
 app.use(express.static("public"));
 
 app.get("/joke", async (req, res) => {
     try {
-        const result = await axios.get(apiURL);
+        const result = await axios.get(apiURL + "/Any?safe-mode");
+        if (result.data.type == "single") {
+            const joke = result.data.joke;
+            const setup = "";
+            const delivery = "";
+            res.json({ setup, delivery, joke });
+        } else {
+            const joke = "";
+            const setup = result.data.setup;
+            const delivery = result.data.delivery;
+            res.json({ setup, delivery, joke });
+        }
+    } catch (err) {
+        console.log("Error fetching the joke: ", err);
+        res.status(500).json({ error: "Failed to fetch joke" });
+    }
+});
+
+app.get("/dirtyjoke", async (req, res) => {
+    try {
+        const result = await axios.get(apiURL + "/Dark");
         if (result.data.type == "single") {
             const joke = result.data.joke;
             const setup = "";
