@@ -15,6 +15,15 @@
     color: white;
 }
 
+#darkmode {
+    margin-top: 10px;
+    opacity: 0.5;
+}
+
+#darkmode:hover {
+    opacity: 1;
+}
+
 .outer {
     display: flex;
     justify-content: center;
@@ -34,8 +43,8 @@ button {
     border: none;
     background: none;
     color: inherit;
-    font: "Roboto Condensed";
-    color: #444444;
+    font-family: "Roboto Condensed", 'Times New Roman', Times, serif;
+    font-weight: 300;
     padding: 0;
     margin: 0;
     cursor: pointer;

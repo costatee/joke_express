@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     let isDarkMode = false;
+
     function fadeInDiv(div) {
         // Set initial opacity to 0 using CSS
         div.style.opacity = 0;
@@ -7,8 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Calculate the number of frames and duration for the animation
         const frames = 60; 
         const duration = 1000; 
-        
-        // Calculate the change in opacity per frame
         const deltaOpacity = 1 / frames;
         
         // Function to animate the div
@@ -31,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const jokeSetup = document.getElementById('jokeSetup');
     const jokeDelivery = document.getElementById('jokeDelivery');
     const jokeSingle = document.getElementById('jokeSingle');
+    const darkModeButton = document.getElementById('darkmode');
     
     // Call fadeInDiv after buttonContainer is defined
     fadeInDiv(buttonContainer);
@@ -46,18 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
             await new Promise(resolve => setTimeout(resolve, 750));
 
             // Fetch a new joke from the server
-            const endpoint = this.id === 'getJoke' ? '/joke' : '/dirtyjoke';
-            const response = await fetch(endpoint);
+            const response = await fetch("/joke");
             const data = await response.json();
-
-            if (this.id === 'getDirtyJoke' && !isDarkMode) {
-                document.body.classList.add('dark-mode');
-                isDarkMode = true;
-            }
-            else if (this.id === 'getJoke' && isDarkMode) {
-                document.body.classList.remove('dark-mode');
-                isDarkMode = false;
-            }
 
             jokeSingle.innerText = data.joke;
             jokeSetup.innerText = data.setup;
@@ -70,6 +60,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Function to handle dark mode button click
+    function handleDarkModeClick() {
+        // Toggle dark mode
+        if (isDarkMode) {
+            document.body.classList.remove('dark-mode');
+            darkModeButton.innerHTML = '⬛️'; // Change button text to ⬛️ when switching to white theme
+        } else {
+            document.body.classList.add('dark-mode');
+            darkModeButton.innerHTML = '⬜️'; // Change button text to ⬜️ when switching to black theme
+        }
+        isDarkMode = !isDarkMode; // Toggle dark mode state
+    }
+
     document.getElementById('getJoke').addEventListener('click', handleClick);
-    document.getElementById('getDirtyJoke').addEventListener('click', handleClick);
+    darkModeButton.addEventListener('click', handleDarkModeClick);
 });
